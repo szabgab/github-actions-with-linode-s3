@@ -22,10 +22,16 @@ jobs:
           echo "access_key = ${{ secrets.ACCESS_KEY }}" >> s3cfg.ini
           echo "secret_key = ${{ secrets.SECRET_KEY }}" >> s3cfg.ini
 
-      - name: restore
+      - name: listing
         run: |
           echo restore
           s3cmd --config=s3cfg.ini ls s3://diggers/
+
+      - name: restore
+        run: |
+          echo restore
+          mkdir -p data
+          s3cmd --config=s3cfg.ini get s3://diggers/time.txt data/time.txt
 
       - name: Pretend to add more data...
         run: |
@@ -34,5 +40,7 @@ jobs:
           cat data/time.txt
 
       - name: save
-        run: echo save
+        run: |
+          echo save
+          s3cmd --config=s3cfg.ini put data/time.txt s3://diggers/
 
