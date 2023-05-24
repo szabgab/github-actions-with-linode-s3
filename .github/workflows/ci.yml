@@ -28,9 +28,9 @@ jobs:
           s3cmd --config=s3cfg.ini ls s3://diggers/
 
       - name: restore
+        shell: bash {0}
         run: |
           echo restore
-          set +e
           mkdir -p data
           s3cmd --config=s3cfg.ini get s3://diggers/time.txt data/time.txt
 
