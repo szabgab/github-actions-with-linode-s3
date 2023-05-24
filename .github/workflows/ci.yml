@@ -14,8 +14,8 @@ jobs:
 
       - name: prepare
         run: |
-          apt-get update
-          apt-get install -y s3cmd
+          sudo apt-get update
+          sudo apt-get install -y s3cmd
           echo "[default]" > s3cfg.ini
           echo "host_base = us-southeast-1.linodeobjects.com" >> s3cfg.ini
           echo "host_bucket = us-southeast-1.linodeobjects.com" >> s3cfg.ini
