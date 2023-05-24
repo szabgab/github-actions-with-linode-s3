@@ -9,6 +9,10 @@ Then run the collection process that will update the data on the GitHub Action m
 At the end of the process we zip the files and upload them to S3 again.
 
 
+* Go to Linode and enable [object storage](https://cloud.linode.com/object-storage/buckets)
+* Create a pair of [Access keys](https://cloud.linode.com/object-storage/access-keys) that you will
+* need to add as secret variables to GitHub Actions:
+
 * [Settings](https://github.com/szabgab/github-actions-with-linode-s3/settings)
 * Secrets and Variables
 * [Actions](https://github.com/szabgab/github-actions-with-linode-s3/settings/secrets/actions)

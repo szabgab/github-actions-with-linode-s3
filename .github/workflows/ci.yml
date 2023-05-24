@@ -22,11 +22,17 @@ jobs:
           echo "access_key = ${{ secrets.ACCESS_KEY }}" >> s3cfg.ini
           echo "secret_key = ${{ secrets.SECRET_KEY }}" >> s3cfg.ini
 
-      - name: listing
-        run: |
-          echo restore
-          s3cmd --config=s3cfg.ini ls s3://diggers/
+      #- name: listing
+      #  run: |
+      #    echo restore
+      #    s3cmd --config=s3cfg.ini ls s3://diggers/
 
+      # I had to put in an external script as GitHub runs the shell commands using the -e flag
+      # meaning if any of the commands fails then the whole step fails.
+      # The resote will fail the first time it run as there is still nothing to restore.
+      # So now we sweep in under the carpet.
+      # In a better solution we would look at the exit code and have a configuration option to
+      # disregard this failure.
       - name: restore
         run: ./restore.sh
 
